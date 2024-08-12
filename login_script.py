@@ -21,7 +21,7 @@ async def delay_time(ms):
 browser = None
 
 # telegram消息
-message = 'serv00&ct8自动化脚本运行\n'
+message = 'serv00&ct8自动化脚本运行开始\n…………………………………………………………………………………………\n'
 
 async def login(username, password, panel):
     global browser
@@ -101,7 +101,7 @@ async def main():
         
     message += f'所有{serviceName}账号登录完成！'
     await send_telegram_message(message)
-    print(f'所有{serviceName}账号登录完成！')
+    print(f'…………………………………………………………………………………………\n所有{serviceName}账号登录完成！')
 
 async def send_telegram_message(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
