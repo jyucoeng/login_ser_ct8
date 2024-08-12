@@ -21,7 +21,7 @@ async def delay_time(ms):
 browser = None
 
 # telegram消息
-message = 'serv00&ct8自动化脚本运行开始\n…………………………………………………………………………………………\n'
+message = 'serv00&ct8自动化脚本运行开始\n'
 
 async def login(username, password, panel):
     global browser
@@ -68,7 +68,7 @@ async def login(username, password, panel):
 
 async def main():
     global message
-    message = 'serv00&ct8自动化脚本运行\n'
+    message = 'serv00&ct8自动化脚本运行\n…………………………………………………………………………………………\n'
 
     try:
         async with aiofiles.open('accounts.json', mode='r', encoding='utf-8') as f:
@@ -99,9 +99,9 @@ async def main():
         delay = random.randint(1000, 8000)
         await delay_time(delay)
         
-    message += f'所有{serviceName}账号登录完成！'
+    message += f'…………………………………………………………………………………………\n所有{serviceName}账号登录完成！'
     await send_telegram_message(message)
-    print(f'…………………………………………………………………………………………\n所有{serviceName}账号登录完成！')
+    print(f'所有{serviceName}账号登录完成！')
 
 async def send_telegram_message(message):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
