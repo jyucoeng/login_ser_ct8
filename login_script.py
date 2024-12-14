@@ -82,6 +82,7 @@ async def main():
         username = account['username']
         password = account['password']
         panel = account['panel']
+        panel_short = '.'.join(panel.split('.')[:2])
 
         serviceName = 'ct8' if 'ct8' in panel else 'serv00'
         is_logged_in = await login(username, password, panel)
@@ -89,12 +90,12 @@ async def main():
         if is_logged_in:
             now_utc = format_to_iso(datetime.utcnow())
             now_beijing = format_to_iso(datetime.utcnow() + timedelta(hours=8))
-            success_message = f'{serviceName} 在{panel} 账号 {username} 于北京时间 {now_beijing}（UTC时间 {now_utc}）登录成功！'
+            success_message = f'账号{panel_short}-{username} 于北京时间 {now_beijing}（UTC时间 {now_utc}）登录成功！'
             message += success_message + '\n'
             print(success_message)
         else:
-            message += f'{serviceName}在{panel}账号{username} 登录失败，请检查{serviceName}账号和密码是否正确。\n'
-            print(f'{serviceName}在{panel} 账号{username} 登录失败，请检查{serviceName}账号和密码是否正确。')
+            message += f'账号{panel_short}-{username} 登录失败，请检查{serviceName}账号和密码是否正确。\n'
+            print(f'账号{panel_short}-{username} 登录失败，请检查{serviceName}账号和密码是否正确。')
 
         delay = random.randint(1000, 8000)
         await delay_time(delay)
